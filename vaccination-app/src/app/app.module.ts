@@ -24,6 +24,9 @@ import { HeaderComponent } from './header/header.component';
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {UserService} from "./services/user.service";
 import {AuthGuard} from "./auth/auth.guard";
+import {CenterListService} from "./services/center-list.service";
+import { BackOfficeComponent } from './back-office/back-office.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -33,24 +36,26 @@ import {AuthGuard} from "./auth/auth.guard";
     ReservationComponent,
     LoginComponent,
     ForbiddenComponent,
-    HeaderComponent
+    HeaderComponent,
+    BackOfficeComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        NoopAnimationsModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        HttpClientModule,
-        MatCardModule,
-        MatDividerModule,
-        MatButtonModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NoopAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    HttpClientModule,
+    MatCardModule,
+    MatDividerModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatTabsModule
+  ],
   providers: [
     AuthGuard,
     {

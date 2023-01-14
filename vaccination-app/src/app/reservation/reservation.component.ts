@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {VaccinationCenter} from "../vaccination-center";
 import {FormControl} from "@angular/forms";
 import {Reservation} from "../reservation";
@@ -17,13 +17,13 @@ export class ReservationComponent implements OnInit {
   date = new FormControl();
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: VaccinationCenter, private reservationService: ReservationService) { }
+  constructor(public dialogRef: MatDialogRef<VaccinationCenter>,@Inject(MAT_DIALOG_DATA) public data: VaccinationCenter, private reservationService: ReservationService) { }
 
   ngOnInit(): void {
   }
 
   Submit() {
     let reservation = new Reservation(this.data, this.nom.value, this.prenom.value, this.email.value, this.date.value);
-    this.reservationService.addReservation(reservation).subscribe(()=>console.log(reservation));
+    this.reservationService.addReservation(reservation).subscribe(()=> this.dialogRef.close());
   }
 }

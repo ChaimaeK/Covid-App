@@ -4,6 +4,7 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import {ReservationComponent} from "../reservation/reservation.component";
 import {CenterListService} from "../services/center-list.service";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-vaccination-center-list',
@@ -17,7 +18,7 @@ export class VaccinationCenterListComponent implements OnInit {
   centers!: VaccinationCenter[]; //= [this.center_a, this.center_b];
 
 
-  constructor(private matDialog: MatDialog, private center: CenterListService) { }
+  constructor(private matDialog: MatDialog, private center: CenterListService, public router: Router) { }
 
   ngOnInit(): void {
     this.center.getCenters().subscribe(data =>{

@@ -8,6 +8,6 @@
   </mat-card-content>
   <mat-divider inset></mat-divider>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="openReservation(center)">Choisir</button>
+    <button *ngIf="router.url ==='/centers' " mat-raised-button color="primary" (click)="openReservation(center)">Choisir</button>
   </mat-card-actions>
 </mat-card>
