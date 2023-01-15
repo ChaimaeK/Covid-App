@@ -1,6 +1,0 @@
-<mat-tab-group>
-  <mat-tab *ngIf="userService.roleMatch(['Super_Admin'])" label="Centres"><app-vaccination-center-list></app-vaccination-center-list></mat-tab>
-  <mat-tab *ngIf="userService.roleMatch(['Admin'])" label="Mon Centre"></mat-tab>
-  <mat-tab *ngIf="userService.roleMatch(['Admin','Medecin'])" label="Planning"><app-planning></app-planning></mat-tab>
-  <mat-tab *ngIf="userService.roleMatch(['Super_Admin'])" label="Config"> Content 4 </mat-tab>
-</mat-tab-group>
