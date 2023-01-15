@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Data
 @AllArgsConstructor @NoArgsConstructor
-@Table(name = "reservation", schema = "covid")
+@Table(name = "reservation")
 public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
-#stage 1
+#stage 1: Building Angular Image
 FROM node:latest as node
+
 WORKDIR /usr/src/app
 COPY /vaccination-app/package.json /vaccination-app/package-lock.json ./
 RUN npm install --force
