@@ -37,3 +37,22 @@ Espace super administrateurs :
 ### File d'attente
 Afin de contrôler le débit côté serveur, on a mis en place un RateLimit via Tocken Bucket, qui permet de limiter le nombre de requêtes traitées à 10 requêtes par minute. Et cela en créant une bucket qui s'incrémente après chaque requête reçue, et à la 10ème demande on se dirige vers une file d'attente.
 Pour que cette configuration prends effet, il faut l'appeler à chaque endpoint et donc dans tous les controlleurs de notre application, ce que nous avons considéré comme une perte de temps et une solution inéficace, comme on sera obliger à recopier le même bout de code à chaque fois qu'on ajoute un controlleur. C'est pourquoi, on a choisit d'ajouter une BucketConfig qui s'execute à l'execution de l'application et un BucketFilter qui filtre toutes les requêtes reçues.
+
+## Comptes pré-créés
+### SuperAdmin
+userName: super123
+password: super@pass
+### Admins
+- Admin 1:
+userName: admin123
+password: admin@pass
+Appartient au centre numéro 1
+### Medecins
+- Medecin 1:
+userName: medecin123
+password: medecin@pass
+Appartient au centre numéro 2
+- Medecin 2:
+userName: medecin1234
+password: medecin@pass
+Appartient au centre numéro 1
