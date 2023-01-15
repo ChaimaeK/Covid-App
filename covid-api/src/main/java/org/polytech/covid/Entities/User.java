@@ -15,6 +15,8 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String userPassword;
+    @ManyToOne @JoinColumn(name = "center")
+    private VaccinationCenter center;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
             joinColumns = {

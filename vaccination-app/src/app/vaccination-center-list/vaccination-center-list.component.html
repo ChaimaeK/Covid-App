@@ -1,17 +1,19 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading"> <br>
-      <h3>Listes des centres</h3><br>
-      <form *ngIf="router.url ==='/centers' " #f="ngForm" (ngSubmit)="onChercher(f.value)">
+      <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
         <div class="form-group">
+          Trouver un centre de vaccination<br>
 
-          <input type="text" name="keyword" ngModel placeholder="recherche par ville">
+          <input type="text" size="50px" name="keyword" ngModel placeholder=" Dans quelle ville ?">
 
           &nbsp;<button type="submit" mat-stroked-button color="primary">Chercher</button>
         </div>
       </form><br>
 
-      <div class="panel-body" class="d-grid gap-3">
+      <h3>Listes des centres</h3><br>
+
+      <div class="d-grid gap-3">
         <mat-card *ngFor="let center of centers" class="example-card">
           <mat-card-title>{{center.name}}</mat-card-title>
           <mat-card-content>

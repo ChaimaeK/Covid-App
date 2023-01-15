@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
+import java.util.Optional;
+
 //@CrossOrigin("*")
 @RestController
 @RequestMapping("/public")
@@ -30,5 +32,12 @@ public class VaccinationCenterController {
     @GetMapping("/centersByCity")
     public ResponseEntity<List<VaccinationCenter>> getCentersByCity(@RequestParam final String city){
         return new ResponseEntity<>(vaccinationCenterService.findCentersByCity(city), HttpStatus.OK);
+    }
+
+    @GetMapping("/myCenter")
+    public ResponseEntity<VaccinationCenter> getCentersByUser(@RequestParam final long centerId){
+        Optional<VaccinationCenter> center = vaccinationCenterService.findById(centerId);
+        return center.map(vaccinationCenter -> new ResponseEntity<>(vaccinationCenter, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

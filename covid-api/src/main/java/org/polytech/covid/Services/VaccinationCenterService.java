@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VaccinationCenterService {
@@ -19,5 +20,9 @@ public class VaccinationCenterService {
 
     public List<VaccinationCenter> findCentersByCity(final String city) {
         return vaccinationCenterRepository.findByCityContains(city);
+    }
+
+    public Optional<VaccinationCenter> findById(final long id) {
+        return vaccinationCenterRepository.findById(id);
     }
 }
