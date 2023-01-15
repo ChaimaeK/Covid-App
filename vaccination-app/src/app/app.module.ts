@@ -27,6 +27,8 @@ import {AuthGuard} from "./auth/auth.guard";
 import {CenterListService} from "./services/center-list.service";
 import { BackOfficeComponent } from './back-office/back-office.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import { PlanningComponent } from './planning/planning.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -37,25 +39,27 @@ import {MatTabsModule} from "@angular/material/tabs";
     LoginComponent,
     ForbiddenComponent,
     HeaderComponent,
-    BackOfficeComponent
+    BackOfficeComponent,
+    PlanningComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    NoopAnimationsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    HttpClientModule,
-    MatCardModule,
-    MatDividerModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatTabsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        NoopAnimationsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        HttpClientModule,
+        MatCardModule,
+        MatDividerModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatTabsModule,
+        MatIconModule
+    ],
   providers: [
     AuthGuard,
     {

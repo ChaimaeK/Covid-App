@@ -34,11 +34,13 @@ public class VaccinationCenterController {
         return new ResponseEntity<>(vaccinationCenterService.findCentersByCity(city), HttpStatus.OK);
     }
 
-    @GetMapping("/myCenter")
+    @GetMapping("/centerById")
     @PreAuthorize("hasAnyRole('Admin','Medecin')")
-    public ResponseEntity<VaccinationCenter> getCentersByUser(@RequestParam final long centerId){
-        Optional<VaccinationCenter> center = vaccinationCenterService.findById(centerId);
-        return center.map(vaccinationCenter -> new ResponseEntity<>(vaccinationCenter, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<VaccinationCenter> getCenterById(@RequestParam final long id){
+        Optional<VaccinationCenter> center = vaccinationCenterService.findById(id);
+        if (center.isPresent()) {
+            return new ResponseEntity<>(center.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

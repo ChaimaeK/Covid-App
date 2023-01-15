@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface VaccinationCenterRepository extends JpaRepository<VaccinationCenter, Long> {
-    List<VaccinationCenter> findByCityContains(final String city);
+    List<VaccinationCenter> findByCityContainsIgnoreCase(final String city);
 }

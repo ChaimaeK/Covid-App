@@ -15,6 +15,7 @@ export class ReservationComponent implements OnInit {
   prenom = new FormControl();
   email = new FormControl();
   date = new FormControl();
+  approved = false;
 
 
   constructor(public dialogRef: MatDialogRef<VaccinationCenter>,@Inject(MAT_DIALOG_DATA) public data: VaccinationCenter, private reservationService: ReservationService) { }
@@ -23,7 +24,7 @@ export class ReservationComponent implements OnInit {
   }
 
   Submit() {
-    let reservation = new Reservation(this.data, this.nom.value, this.prenom.value, this.email.value, this.date.value);
+    let reservation = new Reservation(this.data, this.nom.value, this.prenom.value, this.email.value, this.date.value, this.approved);
     this.reservationService.addReservation(reservation).subscribe(()=> this.dialogRef.close());
   }
 }

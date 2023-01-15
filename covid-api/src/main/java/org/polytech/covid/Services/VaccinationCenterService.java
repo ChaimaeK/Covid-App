@@ -19,7 +19,7 @@ public class VaccinationCenterService {
     public List<VaccinationCenter> findAllCenters(){return vaccinationCenterRepository.findAll();}
 
     public List<VaccinationCenter> findCentersByCity(final String city) {
-        return vaccinationCenterRepository.findByCityContains(city);
+        return vaccinationCenterRepository.findByCityContainsIgnoreCase(city);
     }
 
     public Optional<VaccinationCenter> findById(final long id) {

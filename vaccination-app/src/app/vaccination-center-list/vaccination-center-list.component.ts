@@ -35,7 +35,7 @@ export class VaccinationCenterListComponent implements OnInit {
     });
   }
 
-  onChercher(value:any) {
+  onChercher(value: any) {
     this.center.getCentersByCity(value).subscribe(data =>{
       this.centers = data;
     });
