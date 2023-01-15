@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "users", schema = "covid")
+@Table(name = "users")
 public class User {
 
     @Id
