@@ -40,19 +40,19 @@ Pour que cette configuration prends effet, il faut l'appeler à chaque endpoint 
 
 ## Comptes pré-créés
 ### SuperAdmin
-userName: super123
+userName: super123<br>
 password: super@pass
 ### Admins
 - Admin 1:
-userName: admin123
-password: admin@pass
+userName: admin123<br>
+password: admin@pass<br>
 Appartient au centre numéro 1
 ### Medecins
 - Medecin 1:
-userName: medecin123
-password: medecin@pass
+userName: medecin123<br>
+password: medecin@pass<br>
 Appartient au centre numéro 2
 - Medecin 2:
-userName: medecin1234
-password: medecin@pass
+userName: medecin1234<br>
+password: medecin@pass<br>
 Appartient au centre numéro 1
