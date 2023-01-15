@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {VaccinationCenter} from "../vaccination-center";
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import {ReservationComponent} from "../reservation/reservation.component";
 import {CenterListService} from "../services/center-list.service";
-import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
@@ -22,6 +21,12 @@ export class VaccinationCenterListComponent implements OnInit {
 
   ngOnInit(): void {
     this.center.getCenters().subscribe(data =>{
+      this.centers = data;
+    });
+  }
+
+  onChercher(value:any) {
+    this.center.getCentersByCity(value).subscribe(data =>{
       this.centers = data;
     });
   }

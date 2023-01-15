@@ -20,4 +20,12 @@ export class CenterListService {
       headers: this.requestHeader,
     });
   }
+
+  public getCentersByCity(value:any): Observable<VaccinationCenter[]>{
+    return this.http.get<VaccinationCenter[]>(this.Url+'/public/centersByCity?city='+value.keyword, {
+      headers: this.requestHeader,
+    });
+  }
+
+
 }

@@ -16,4 +16,8 @@ public class VaccinationCenterService {
     public VaccinationCenterService(VaccinationCenterRepository vaccinationCenterRepo){this.vaccinationCenterRepository = vaccinationCenterRepo;}
 
     public List<VaccinationCenter> findAllCenters(){return vaccinationCenterRepository.findAll();}
+
+    public List<VaccinationCenter> findCentersByCity(final String city) {
+        return vaccinationCenterRepository.findByCityContains(city);
+    }
 }
