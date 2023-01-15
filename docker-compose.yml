@@ -1,0 +1,90 @@
+version: '3.8'
+services:
+  back:
+    build: 
+      context: .
+      dockerfile: Deploiement/BackEnd/Dockerfile
+    user: root
+    ports:
+      - 8080:8080
+    container_name: covid-api-back
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/covid-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_MVC_PATHMATCH_MATCHING_STRATEGY=ant_path_matcher
+      - SPRING_JPA_DATABASE_PLATEFORME=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+      - SPRING_LIQUIBASE_ENABLED=false
+
+  db:
+    image: postgres:15.1
+    container_name: covid-api-db
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=covid-db
+    volumes:
+      - ./src/main/resources/:/tmp
+
+  front:
+    build: 
+      context: .
+      dockerfile: Deploiement/FrontEnd/Dockerfile
+    ports: 
+      - 4200:80
+    container_name: covid-api-front
+    depends_on:
+      - back
+    environment:
+      - PROXY_HOST=back
+      - PROXY_PORT=8080
+    links:
+      - back:back
+      
+## Jenkins Controller
+#  jenkins:
+#  # Build DockerFile in Deploiement/jenkins repository
+#    build: build/jenkins
+#    privileged: true
+#    user: root
+#    # http://localhost:8001 for UI
+#    ports:
+#      - 8001:8080
+#      # Port 50000 only needed if we want to launch external Jenkins agents
+#      # - 50000:50000
+#    container_name: jenkins
+#    # Enabled Docker TLS & path to Engine running on "docker" container
+#    environment:
+#      - DOCKER_TLS_VERIFY=1
+#      - DOCKER_CERT_PATH=/certs/client
+#      - DOCKER_HOST=tcp://docker:2376
+#    # Persistence & shared certs
+#    volumes:
+#      - ~/jenkins:/var/jenkins_home
+#      - ./data/certs:/certs/client:ro
+#
+## Docker Engine used by Jenkins Controller
+#  docker:
+#  # Use Docker In Docker Image
+#    image: docker:dind
+#    privileged: true
+#    # Expose Docker Engine port for controlling Docker Engine from host
+#    ports:
+#      - 9999:2376
+#    # Fix container name for fix DNS
+#    container_name: docker
+#    environment:
+#      - DOCKER_TLS_CERTDIR=/certs
+#    # Persistence, shared jenkins_home for wrokspace acces
+#    volumes:
+#      - ~/jenkins:/var/jenkins_home
+#      - ./data/certs:/certs/client
+#      - ./data/docker/etc/docker:/etc/docker
+#
+#### End Jenkins part
