@@ -19,7 +19,7 @@ Pour ce faire, on s'est servit d'une configuration Spring Security appropriée q
 ### Spécification des accès
 Espace patients :
 - Consulter les centres à l'aide d'une recherche par ville
-- Réserver un créneau et le vaccin
+- Réserver un créneau et le vaccin <br>
 Espace medecins :
 - S'affecter un patient
 - Valider la vaccination
