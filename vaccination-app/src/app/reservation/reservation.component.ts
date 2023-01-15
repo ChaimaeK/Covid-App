@@ -4,7 +4,6 @@ import {VaccinationCenter} from "../vaccination-center";
 import {FormControl} from "@angular/forms";
 import {Reservation} from "../reservation";
 import {ReservationService} from "../services/reservation.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-reservation',
@@ -25,7 +24,6 @@ export class ReservationComponent implements OnInit {
 
   Submit() {
     let reservation = new Reservation(this.data, this.nom.value, this.prenom.value, this.email.value, this.date.value);
-    //this.reservationService.addReservation(reservation).subscribe(()=> this.dialogRef.close());
     this.reservationService.addReservation(reservation).subscribe(()=> this.dialogRef.close());
   }
 }

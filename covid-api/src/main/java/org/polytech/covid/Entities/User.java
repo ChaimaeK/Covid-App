@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "users")
+@Table(name = "users", schema = "covid")
 public class User {
 
     @Id
@@ -24,7 +24,8 @@ public class User {
             },
             inverseJoinColumns = {
                     @JoinColumn(name = "ROLE_ID")
-            }
+            },
+            schema = "covid"
     )
     private Set<Role> role;
 }

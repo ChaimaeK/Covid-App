@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor @NoArgsConstructor
-@Table(name = "center")
+@Table(name = "center", schema = "covid")
 
 public class VaccinationCenter implements Serializable {
     @Id

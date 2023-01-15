@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {VaccinationCenter} from "../vaccination-center";
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import {ReservationComponent} from "../reservation/reservation.component";
 import {CenterListService} from "../services/center-list.service";
+import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
@@ -25,18 +26,18 @@ export class VaccinationCenterListComponent implements OnInit {
     });
   }
 
-  onChercher(value:any) {
-    this.center.getCentersByCity(value).subscribe(data =>{
-      this.centers = data;
-    });
-  }
-
   openReservation(center: VaccinationCenter) {
     this.matDialog.open(ReservationComponent, {
       "width": '6000px',
       "maxHeight": '90vh',
       "data": center,
       "autoFocus": false
+    });
+  }
+
+  onChercher(value:any) {
+    this.center.getCentersByCity(value).subscribe(data =>{
+      this.centers = data;
     });
   }
 

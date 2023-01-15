@@ -34,20 +34,20 @@ export class UserService {
     });
   }
 
-  public roleMatch(allowedRoles: any): boolean {
+  public roleMatch(allowedRoles: Array<string>): boolean {
     let isMatch = false;
     const userRoles: any = this.userAuthService.getRoles();
 
-    if (userRoles != null && userRoles) {
+    if (userRoles != null) {
       for (let i = 0; i < userRoles.length; i++) {
-        for (let j = 0; j < allowedRoles.length; j++) {
-          if (userRoles[i].roleName === allowedRoles[j]) {
+        allowedRoles.forEach((e) => {
+          if (userRoles[i].roleName === e) {
             isMatch = true;
             return isMatch;
           } else {
             return isMatch;
           }
-        }
+        })
       }
     }
     return isMatch;

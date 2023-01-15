@@ -7,7 +7,8 @@
 
           <input type="text" size="50px" name="keyword" ngModel placeholder=" Dans quelle ville ?">
 
-          &nbsp;<button type="submit" mat-stroked-button color="primary">Chercher</button>
+          <button type="submit" mat-stroked-button color="primary">Chercher</button>
+          <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary" class="center">Ajouter un centre</button>
         </div>
       </form><br>
 
@@ -24,8 +25,9 @@
           <mat-divider inset></mat-divider>
           <mat-card-actions>
             <button *ngIf="router.url ==='/centers' " mat-raised-button color="primary" (click)="openReservation(center)">Choisir</button>
+            <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary">Modifier</button>
           </mat-card-actions>
-        </mat-card><br>
+        </mat-card>
       </div>
     </div>
   </div>

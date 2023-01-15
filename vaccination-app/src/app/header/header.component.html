@@ -10,9 +10,19 @@
           <a class="nav-link active" aria-current="page" routerLink="/centers">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/admin"
+          <a class="nav-link active" aria-current="page" routerLink="/back-office"
              *ngIf="userService.roleMatch(['Admin'])"
           >Admin Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/back-office"
+             *ngIf="userService.roleMatch(['Super_Admin'])"
+          >Super Admin Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/back-office"
+             *ngIf="userService.roleMatch(['Medecin'])"
+          >Medecin Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/user"

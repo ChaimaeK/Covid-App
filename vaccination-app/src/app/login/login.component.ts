@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
         this.userAuthService.setToken(response.jwtToken);
 
         const role = response.user.role[0].roleName;
-        if (role === 'Admin') {
+        if (role === 'Admin' || role === 'Super_Admin' || role ==='Medecin') {
           this.router.navigate(['/back-office']);
         } else {
-          this.router.navigate(['/user']);
+          this.router.navigate(['']);
         }
       },
       (error) => {
