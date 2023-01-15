@@ -1,0 +1,26 @@
+<form #form (ngSubmit)="Submit()">
+  <mat-form-field appearance="fill" class="m-lg-1">
+    <mat-label>Addresse</mat-label>
+    <input matInput [formControl]="address">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="m-lg-1">
+    <mat-label>Ville</mat-label>
+    <input matInput [formControl]="city">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="m-lg-1">
+    <mat-label>Nom</mat-label>
+    <input matInput [formControl]="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="m-lg-1">
+    <mat-label>Code Postal</mat-label>
+    <input matInput [formControl]="postal_code">
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" class="m-lg-1" type="submit">Enregistrer</button>
+  <button mat-raised-button color="primary" class="m-lg-1" (click)="close()">Annuler</button>
+  <mat-icon color="accent" (click)="openUsers()">supervisor_account</mat-icon>
+</form>

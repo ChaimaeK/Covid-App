@@ -1,0 +1,80 @@
+import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { VaccinationCenterComponent } from './vaccination-center/vaccination-center.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { VaccinationCenterListComponent } from './vaccination-center-list/vaccination-center-list.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { MatNativeDateModule } from '@angular/material/core';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatButtonModule} from "@angular/material/button";
+import {ErrorInterceptor} from "./interceptors/error.interceptor";
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { HeaderComponent } from './header/header.component';
+import {AuthInterceptor} from "./auth/auth.interceptor";
+import {UserService} from "./services/user.service";
+import {AuthGuard} from "./auth/auth.guard";
+import {CenterListService} from "./services/center-list.service";
+import { BackOfficeComponent } from './back-office/back-office.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { CenterDetailsComponent } from './center-details/center-details.component';
+import {MatIconModule} from "@angular/material/icon";
+import { UserDetailsComponent } from './user-details/user-details.component';
+import {MatTableModule} from "@angular/material/table";
+import { PlanningComponent } from './planning/planning.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    VaccinationCenterComponent,
+    VaccinationCenterListComponent,
+    ReservationComponent,
+    LoginComponent,
+    ForbiddenComponent,
+    HeaderComponent,
+    BackOfficeComponent,
+    CenterDetailsComponent,
+    UserDetailsComponent,
+    PlanningComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NoopAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    HttpClientModule,
+    MatCardModule,
+    MatDividerModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatIconModule,
+    MatTableModule
+  ],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    },
+    UserService, CenterListService
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

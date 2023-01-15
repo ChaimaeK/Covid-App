@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading"> <br>
+      <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
+        <div class="form-group">
+          Trouver un centre de vaccination<br>
+
+          <input type="text" size="50px" name="keyword" ngModel placeholder=" Dans quelle ville ?">
+
+          <button type="submit" mat-stroked-button color="primary" class="m-lg-2">Chercher</button>
+          <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary" class="center">Ajouter un centre</button>
+        </div>
+      </form><br>
+
+      <h3>Listes des centres</h3><br>
+
+      <div class="d-grid gap-3">
+        <mat-card *ngFor="let center of centers" class="example-card">
+          <mat-card-title>{{center.name}}</mat-card-title>
+          <mat-card-content>
+            <div>
+              {{center.address}}, {{center.postalCode}}, {{center.city}}
+            </div>
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions>
+            <button *ngIf="router.url ==='/centers' " mat-raised-button color="primary" (click)="openReservation(center)">Choisir</button>
+            <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary" (click)="openCenter(center)">Modifier</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
