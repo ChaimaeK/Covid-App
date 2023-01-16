@@ -14,4 +14,5 @@ export class VaccinationCenter{
     this.city = city;
   }
 
+
 }

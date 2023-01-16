@@ -1,8 +1,10 @@
 package org.polytech.covid.Services;
 
+import org.polytech.covid.Entities.Reservation;
 import org.polytech.covid.Entities.Role;
 import org.polytech.covid.Entities.User;
 import org.polytech.covid.Entities.VaccinationCenter;
+import org.polytech.covid.Repositories.ReservationRepository;
 import org.polytech.covid.Repositories.RoleRepository;
 import org.polytech.covid.Repositories.UserRepository;
 import org.polytech.covid.Repositories.VaccinationCenterRepository;
@@ -10,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +30,9 @@ public class UserService {
 
     @Autowired
     private VaccinationCenterRepository centerDao;
+
+    @Autowired
+    private ReservationRepository reservationDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -74,7 +82,7 @@ public class UserService {
         adminUser.setUserName("admin123");
         adminUser.setUserPassword(getEncodedPassword("admin@pass"));
         adminUser.setUserFirstName("admin");
-        adminUser.setUserLastName("admin");
+        adminUser.setUserLastName("adminLast");
         Set<Role> adminRoles = new HashSet<>();
         adminRoles.add(adminRole);
         adminUser.setRole(adminRoles);
@@ -85,7 +93,7 @@ public class UserService {
         superUser.setUserName("super123");
         superUser.setUserPassword(getEncodedPassword("super@pass"));
         superUser.setUserFirstName("super");
-        superUser.setUserLastName("super");
+        superUser.setUserLastName("superLast");
         Set<Role> superRoles = new HashSet<>();
         superRoles.add(superRole);
         superUser.setRole(superRoles);
@@ -95,7 +103,7 @@ public class UserService {
         medUser.setUserName("medecin123");
         medUser.setUserPassword(getEncodedPassword("medecin@pass"));
         medUser.setUserFirstName("medecin");
-        medUser.setUserLastName("medecin");
+        medUser.setUserLastName("medecinLast");
         Set<Role> medRoles = new HashSet<>();
         medRoles.add(medRole);
         medUser.setRole(medRoles);
@@ -104,9 +112,9 @@ public class UserService {
 
         User medUser1 = new User();
         medUser1.setUserName("medecin1234");
-        medUser1.setUserPassword(getEncodedPassword("medecin@pass"));
+        medUser1.setUserPassword(getEncodedPassword("medecin1@pass"));
         medUser1.setUserFirstName("medecin1");
-        medUser1.setUserLastName("medecin1");
+        medUser1.setUserLastName("medecin1Last");
         Set<Role> medRoles1 = new HashSet<>();
         medRoles1.add(medRole);
         medUser1.setRole(medRoles1);
@@ -120,7 +128,6 @@ public class UserService {
         userRoles.add(role);
         user.setRole(userRoles);
         user.setUserPassword(getEncodedPassword(user.getUserPassword()));
-
         return userDao.save(user);
     }
 

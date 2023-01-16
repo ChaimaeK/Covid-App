@@ -34,4 +34,8 @@ export class CenterListService {
   public updateCenter(center: VaccinationCenter): Observable<VaccinationCenter>{
     return this.http.put<VaccinationCenter>(this.Url+"/updateCenter", center);
   }
+
+  public createCenter(name: string, address: string, postalCode: number, city: string): Observable<VaccinationCenter>{
+    return this.http.post<VaccinationCenter>(this.Url+"/createCenter", {name: name, address: address, postalCode: postalCode, city: city});
+  }
 }

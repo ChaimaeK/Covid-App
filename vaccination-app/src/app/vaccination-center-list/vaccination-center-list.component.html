@@ -1,6 +1,9 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading"> <br>
+      <div *ngIf="router.url ==='/back-office'" style="margin-left: 35%; margin-top: 5px">
+        <h3> Gestion des centres de vaccinations</h3>
+      </div><br>
       <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
         <div class="form-group">
           Trouver un centre de vaccination<br>
@@ -8,7 +11,7 @@
           <input type="text" size="50px" name="keyword" ngModel placeholder=" Dans quelle ville ?">
 
           <button type="submit" mat-stroked-button color="primary" class="m-lg-2">Chercher</button>
-          <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary" class="center">Ajouter un centre</button>
+          <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary" class="center" (click)="openCreateCenterModal()">Nouveau centre</button>
         </div>
       </form><br>
 

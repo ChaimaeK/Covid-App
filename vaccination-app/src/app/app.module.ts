@@ -32,6 +32,10 @@ import {MatIconModule} from "@angular/material/icon";
 import { UserDetailsComponent } from './user-details/user-details.component';
 import {MatTableModule} from "@angular/material/table";
 import { PlanningComponent } from './planning/planning.component';
+import { MyVaccinationCenterComponent } from './my-vaccination-center/my-vaccination-center.component';
+import { SuperAdminConfigComponent } from './super-admin-config/super-admin-config.component';
+import { QueueComponent } from './queue/queue.component';
+import { CenterCreationComponent } from './center-creation/center-creation.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { PlanningComponent } from './planning/planning.component';
     BackOfficeComponent,
     CenterDetailsComponent,
     UserDetailsComponent,
-    PlanningComponent
+    PlanningComponent,
+    MyVaccinationCenterComponent,
+    SuperAdminConfigComponent,
+    QueueComponent,
+    CenterCreationComponent
   ],
   imports: [
     BrowserModule,

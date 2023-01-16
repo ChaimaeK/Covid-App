@@ -6,6 +6,7 @@ import {CenterListService} from "../services/center-list.service";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {CenterDetailsComponent} from "../center-details/center-details.component";
+import {CenterCreationComponent} from "../center-creation/center-creation.component";
 
 @Component({
   selector: 'app-vaccination-center-list',
@@ -43,7 +44,14 @@ export class VaccinationCenterListComponent implements OnInit {
       "data": center,
       "autoFocus": false
     })
+  }
 
+  openCreateCenterModal() {
+    this.matDialog.open(CenterCreationComponent,{
+      "width": '6000px',
+      "maxHeight": '90vh',
+      "autoFocus": false
+    })
   }
 
   onChercher(value:any) {

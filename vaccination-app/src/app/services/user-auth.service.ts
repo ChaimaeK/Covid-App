@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {VaccinationCenter} from "../vaccination-center";
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,14 @@ export class UserAuthService {
 
   public getToken(): string {
     return localStorage.getItem('jwtToken')!;
+  }
+
+  public setCenterId(centerId: number) {
+    localStorage.setItem('centerId', String(centerId));
+  }
+
+  public getCenterId(): string {
+    return localStorage.getItem('centerId')!;
   }
 
   public clear() {

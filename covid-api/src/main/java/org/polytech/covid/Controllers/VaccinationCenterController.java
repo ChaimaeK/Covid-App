@@ -1,5 +1,6 @@
 package org.polytech.covid.Controllers;
 
+        import org.polytech.covid.Entities.Reservation;
         import org.polytech.covid.Entities.VaccinationCenter;
         import org.polytech.covid.Services.VaccinationCenterService;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ package org.polytech.covid.Controllers;
         import org.springframework.web.bind.annotation.*;
 
         import javax.annotation.security.RolesAllowed;
+        import java.util.Date;
         import java.util.List;
         import java.util.Optional;
 
@@ -44,7 +46,7 @@ public class VaccinationCenterController {
 
     @PutMapping("/updateCenter")
     @PreAuthorize("hasRole('Super_Admin')")
-    public ResponseEntity<VaccinationCenter> updateCar(@RequestBody VaccinationCenter center){
+    public ResponseEntity<VaccinationCenter> updateCar(@RequestBody final VaccinationCenter center){
         return new ResponseEntity<>(vaccinationCenterService.updateCenter(center),HttpStatus.CREATED);
     }
 
@@ -56,5 +58,11 @@ public class VaccinationCenterController {
             return new ResponseEntity<>(center.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/createCenter")
+    @PreAuthorize("hasRole('Super_Admin')")
+    public ResponseEntity<VaccinationCenter> createCenter(@RequestBody final VaccinationCenter center){
+        return new ResponseEntity<>(vaccinationCenterService.createCenter(center),HttpStatus.CREATED);
     }
 }

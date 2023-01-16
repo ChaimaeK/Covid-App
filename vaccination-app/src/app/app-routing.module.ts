@@ -5,10 +5,12 @@ import {ForbiddenComponent} from "./forbidden/forbidden.component";
 import {VaccinationCenterListComponent} from "./vaccination-center-list/vaccination-center-list.component";
 import {BackOfficeComponent} from "./back-office/back-office.component";
 import {AuthGuard} from "./auth/auth.guard";
+import {QueueComponent} from "./queue/queue.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'forbidden', component: ForbiddenComponent },
+  { path: 'queue', component: QueueComponent },
   { path: 'centers', component: VaccinationCenterListComponent},
   { path: '', redirectTo: 'centers', pathMatch: 'full'},
   { path: 'back-office', component: BackOfficeComponent, canActivate:[AuthGuard], data:{roles:['Super_Admin','Admin','Medecin']}}

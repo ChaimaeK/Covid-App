@@ -26,7 +26,11 @@ public class VaccinationCenterService {
         return vaccinationCenterRepository.findById(id);
     }
 
-    public VaccinationCenter updateCenter(VaccinationCenter center){
+    public VaccinationCenter updateCenter(final VaccinationCenter center){
+        return vaccinationCenterRepository.save(center);
+    }
+
+    public VaccinationCenter createCenter(final VaccinationCenter center){
         return vaccinationCenterRepository.save(center);
     }
 }
