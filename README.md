@@ -54,5 +54,5 @@ password: medecin@pass<br>
 Appartient au centre numéro 2
 - Medecin 2:
 userName: medecin1234<br>
-password: medecin@pass<br>
+password: medecin1@pass<br>
 Appartient au centre numéro 1
