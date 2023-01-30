@@ -1,0 +1,48 @@
+<p *ngIf="!data">Ajouter un nouveau utilisateur</p>
+<p *ngIf="data">Modifier ce profil</p>
+
+<form #form (ngSubmit)="Submit()">
+  <mat-form-field appearance="fill" class="m-lg-1">
+    <mat-label>Pseudo</mat-label>
+    <input matInput [formControl]="userName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="m-lg-1">
+    <mat-label>Prénom</mat-label>
+    <input matInput [formControl]="userFirstName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="m-lg-1">
+    <mat-label>Nom</mat-label>
+    <input matInput [formControl]="userLastName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="m-lg-1">
+    <mat-label>Mot de passe</mat-label>
+    <input type="password" matInput [formControl]="userPassword">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" >
+    <mat-label>Centre de rattachement</mat-label>
+    <mat-select [formControl]="center">
+      <mat-option [value]=null>None</mat-option>
+      <mat-option *ngFor="let center of centers" [value]="data?.center || center">
+        {{center.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Role</mat-label>
+    <mat-select [formControl]="role">
+      <mat-option *ngFor="let role of roles" [value]="data?.role || role">
+        {{role.roleName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button *ngIf="!data" mat-raised-button color="primary" class="m-lg-1" type="submit">Ajouter</button>
+  <button *ngIf="data" mat-raised-button color="primary" class="m-lg-1" type="submit">Enregistrer</button>
+  <button *ngIf="data" mat-raised-button color="primary" class="m-lg-1" (click)="onDeactivate()">Désactiver</button>
+  <button *ngIf="data" mat-raised-button class="m-lg-1" (click)="close()">Annuler</button>
+</form>

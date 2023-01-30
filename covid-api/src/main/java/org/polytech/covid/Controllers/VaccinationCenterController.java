@@ -46,7 +46,7 @@ public class VaccinationCenterController {
 
     @PutMapping("/updateCenter")
     @PreAuthorize("hasRole('Super_Admin')")
-    public ResponseEntity<VaccinationCenter> updateCar(@RequestBody final VaccinationCenter center){
+    public ResponseEntity<VaccinationCenter> updateCenter(@RequestBody final VaccinationCenter center){
         return new ResponseEntity<>(vaccinationCenterService.updateCenter(center),HttpStatus.CREATED);
     }
 

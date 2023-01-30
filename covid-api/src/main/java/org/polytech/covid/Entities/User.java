@@ -1,6 +1,7 @@
 package org.polytech.covid.Entities;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -27,4 +28,6 @@ public class User {
             }
     )
     private Set<Role> role;
+    @Value("${true}")
+    private boolean activated;
 }

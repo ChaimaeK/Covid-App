@@ -1,24 +1,23 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading"> <br>
-      <div *ngIf="router.url ==='/back-office'" style="margin-left: 35%; margin-top: 5px">
+      <div *ngIf="router.url ==='/back-office'" class="d-flex justify-content-center">
         <h3> Gestion des centres de vaccinations</h3>
       </div><br>
-      <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
-        <div class="form-group">
-          Trouver un centre de vaccination<br>
 
-          <input type="text" size="50px" name="keyword" ngModel placeholder=" Dans quelle ville ?">
+        <div class="d-flex justify-content-center">
+          <mat-form-field class="col-lg-4">
+            <mat-label>Trouver un centre de vaccination</mat-label>
+            <input matInput type="text" [(ngModel)]="term" ngModel placeholder=" Dans quelle ville ?">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary" class="h-25 d-inline-block" style="margin-left: 15px" (click)="openCreateCenterModal()">Nouveau centre</button>
 
-          <button type="submit" mat-stroked-button color="primary" class="m-lg-2">Chercher</button>
-          <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary" class="center" (click)="openCreateCenterModal()">Nouveau centre</button>
-        </div>
-      </form><br>
+        </div><br>
 
-      <h3>Listes des centres</h3><br>
 
       <div class="d-grid gap-3">
-        <mat-card *ngFor="let center of centers" class="example-card">
+        <mat-card *ngFor="let center of centers |searchFilter:term" class="example-card">
           <mat-card-title>{{center.name}}</mat-card-title>
           <mat-card-content>
             <div>
@@ -31,7 +30,7 @@
             <button *ngIf="router.url ==='/back-office' " mat-raised-button color="primary" (click)="openCenter(center)">Modifier</button>
           </mat-card-actions>
         </mat-card>
-      </div>
+      </div><br>
     </div>
   </div>
 </div>

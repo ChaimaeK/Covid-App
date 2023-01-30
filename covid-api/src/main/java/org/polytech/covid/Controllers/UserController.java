@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
+//@RequestMapping("/private")
 public class UserController {
 
     @Autowired
@@ -24,6 +25,7 @@ public class UserController {
     }
 
     @PostMapping({"/registerNewUser"})
+    @PreAuthorize("hasAnyRole('Admin','Super_Admin')")
     public User registerNewUser(@RequestBody User user) {
         return userService.registerNewUser(user);
     }
@@ -36,8 +38,32 @@ public class UserController {
 
 
     @GetMapping("/users")
-    @PreAuthorize("hasRole('Super_Admin')")
+    @PreAuthorize("hasAnyRole('Super_Admin','Admin')")
     public ResponseEntity<List<User>> getUsers(@RequestParam final long centerId){
         return new ResponseEntity<>(userService.getUsers(centerId), HttpStatus.OK);
+    }
+
+    @GetMapping("/usersForSup")
+    @PreAuthorize("hasRole('Super_Admin')")
+    public ResponseEntity<List<User>> getUsersForSup(){
+        return new ResponseEntity<>(userService.getUsersForSup(), HttpStatus.OK);
+    }
+
+    @PostMapping({"/addNewUser"})
+    @PreAuthorize("hasAnyRole('Admin','Super_Admin')")
+    public ResponseEntity<User> addNewUser(@RequestBody final User user) {
+        return new ResponseEntity<>(userService.addUser(user),HttpStatus.CREATED);
+    }
+
+    @PutMapping("/updateUser")
+    @PreAuthorize("hasAnyRole('Admin','Super_Admin')")
+    public ResponseEntity<User> updateUser(@RequestBody final User user){
+        return new ResponseEntity<>(userService.updateUser(user),HttpStatus.CREATED);
+    }
+
+    @PutMapping("/deactivateUser")
+    @PreAuthorize("hasAnyRole('Admin','Super_Admin')")
+    public User deactivateUser(@RequestBody final User user){
+        return userService.deactivateUser(user);
     }
 }

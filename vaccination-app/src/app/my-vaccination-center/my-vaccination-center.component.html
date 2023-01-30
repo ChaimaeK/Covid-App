@@ -3,10 +3,36 @@
     <div style="margin-left: 35%; margin-top: 5px">
       <h3> Gestion des medecins</h3>
     </div><br>
-    <div>
+    <div *ngIf="center">
       {{center.name}}<br>
       {{center.address}}, {{center.postalCode}}, {{center.city}}
     </div><br>
 
+    <div class="panel-body">
+
+      <table class="table table-bordered " >
+        <thead>
+        <tr>
+          <td class="text-center">
+            <Strong>Médecins</Strong>
+          </td>
+          <td>
+            <mat-icon matTooltip="Créer un nouveau utilisateur" (click)="openCreateNewUserModal()" style="cursor: pointer">add_circle_outline</mat-icon>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td *ngIf="user.role[0].roleName === 'Medecin' && user.activated">
+            {{user.userFirstName}} {{user.userLastName}}
+          </td>
+          <td *ngIf="user.role[0].roleName === 'Medecin' && user.activated">
+            <mat-icon matTooltip="Modifier ce profil" (click)="openUpdateUserModal(user)" color="primary" style="cursor: pointer">create</mat-icon>
+            <mat-icon matTooltip="Supprimer ce profil" (click)="onDeactivate(user)" color="warn" style="cursor: pointer">remove_circle_outline</mat-icon>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

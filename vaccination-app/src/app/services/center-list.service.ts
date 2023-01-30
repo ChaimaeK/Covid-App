@@ -24,12 +24,12 @@ export class CenterListService {
   public getCenter(id: number): Observable<VaccinationCenter>{
     return this.http.get<VaccinationCenter>(this.Url+'/centerById?id='+id);
   }
-
+/*
   public getCentersByCity(value:any): Observable<VaccinationCenter[]>{
     return this.http.get<VaccinationCenter[]>(this.Url+'/public/centersByCity?city='+value.keyword, {
       headers: this.requestHeader,
     });
-  }
+  }*/
 
   public updateCenter(center: VaccinationCenter): Observable<VaccinationCenter>{
     return this.http.put<VaccinationCenter>(this.Url+"/updateCenter", center);

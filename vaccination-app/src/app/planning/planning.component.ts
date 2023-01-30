@@ -14,8 +14,7 @@ import {UserAuthService} from "../services/user-auth.service";
 })
 export class PlanningComponent implements OnInit {
   reservations!: Reservation[];
-  center!: VaccinationCenter;
-  today = new Date();
+  center!: VaccinationCenter ;
   useCenter!: string;
 
   constructor(private reservation: ReservationService, private _center: CenterListService, private userAuthService: UserAuthService) {

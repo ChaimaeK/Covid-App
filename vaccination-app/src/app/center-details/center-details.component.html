@@ -1,3 +1,4 @@
+<p *ngIf="!data">Ajouter un nouveau centre de vaccination</p>
 <form #form (ngSubmit)="Submit()">
   <mat-form-field appearance="fill" class="m-lg-1">
     <mat-label>Addresse</mat-label>
@@ -20,7 +21,8 @@
   </mat-form-field><br>
 
 
-  <button mat-raised-button color="primary" class="m-lg-1" type="submit">Enregistrer</button>
-  <button mat-raised-button color="primary" class="m-lg-1" (click)="close()">Annuler</button>
-  <mat-icon color="accent" (click)="openUsers()">supervisor_account</mat-icon>
+  <button *ngIf="data" mat-raised-button color="primary" class="m-lg-1" type="submit">Enregistrer</button>
+  <button *ngIf="!data" mat-raised-button color="primary" class="m-lg-1" type="submit">Ajouter</button>
+  <button *ngIf="data" mat-raised-button class="m-lg-1" (click)="close()">Annuler</button>
+  <mat-icon *ngIf="data" color="accent" (click)="openUsers()" style="cursor: pointer">supervisor_account</mat-icon>
 </form>

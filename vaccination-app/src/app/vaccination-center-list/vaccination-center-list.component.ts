@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {VaccinationCenter} from "../vaccination-center";
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import {ReservationComponent} from "../reservation/reservation.component";
 import {CenterListService} from "../services/center-list.service";
-import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {CenterDetailsComponent} from "../center-details/center-details.component";
-import {CenterCreationComponent} from "../center-creation/center-creation.component";
 
 @Component({
   selector: 'app-vaccination-center-list',
@@ -18,6 +16,7 @@ export class VaccinationCenterListComponent implements OnInit {
   //center_a: VaccinationCenter = {id:1,name:"CH Narbonne",address:"Boulevard Dr Lacroix",postalCode:11100,city:"Narbonne"};
   //center_b: VaccinationCenter = {id:2,name:"Nancy - Toul Marcel Brot",address:"1 rue Joseph Cugnot",postalCode:54000,city:"Nancy"}
   centers!: VaccinationCenter[]; //= [this.center_a, this.center_b];
+  term: any;
 
 
   constructor(private matDialog: MatDialog, private center: CenterListService, public router: Router) { }
@@ -47,16 +46,16 @@ export class VaccinationCenterListComponent implements OnInit {
   }
 
   openCreateCenterModal() {
-    this.matDialog.open(CenterCreationComponent,{
+    this.matDialog.open(CenterDetailsComponent,{
       "width": '6000px',
       "maxHeight": '90vh',
       "autoFocus": false
     })
   }
 
-  onChercher(value:any) {
+  /*onChercher(value:any) {
     this.center.getCentersByCity(value).subscribe(data =>{
       this.centers = data;
     });
-  }
+  }*/
 }

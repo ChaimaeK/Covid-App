@@ -35,7 +35,11 @@ import { PlanningComponent } from './planning/planning.component';
 import { MyVaccinationCenterComponent } from './my-vaccination-center/my-vaccination-center.component';
 import { SuperAdminConfigComponent } from './super-admin-config/super-admin-config.component';
 import { QueueComponent } from './queue/queue.component';
-import { CenterCreationComponent } from './center-creation/center-creation.component';
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import { SearchFilterPipe } from './search-filter.pipe';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { UserModalComponent } from './user-modal/user-modal.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -53,7 +57,8 @@ import { CenterCreationComponent } from './center-creation/center-creation.compo
     MyVaccinationCenterComponent,
     SuperAdminConfigComponent,
     QueueComponent,
-    CenterCreationComponent
+    SearchFilterPipe,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,10 @@ import { CenterCreationComponent } from './center-creation/center-creation.compo
     ReactiveFormsModule,
     MatTabsModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    Ng2SearchPipeModule,
+    MatTooltipModule,
+    MatSelectModule
   ],
   providers: [
     AuthGuard,

@@ -3,7 +3,7 @@
     <div style="margin-left: 35%; margin-top: 5px">
       <h3> Gestion des vaccinations</h3>
     </div><br>
-    <div>
+    <div *ngIf="center">
       {{center.name}}<br>
       {{center.address}}, {{center.postalCode}}, {{center.city}}
     </div><br>
@@ -23,7 +23,7 @@
         <thead>
         <tr>
           <td>
-            <Strong>Réservations du {{today.toLocaleDateString()}}</Strong>
+            <Strong>Réservations </Strong>
           </td>
           <td>
             <Strong>Etat</Strong>
@@ -37,7 +37,7 @@
           </td>
           <td>
             <button *ngIf="!reservation.approved" mat-raised-button color="primary" (click)="onApproveVaccination(reservation)">Valider</button>
-            <mat-icon *ngIf="reservation.approved" color="accent">done</mat-icon>
+            <mat-icon *ngIf="reservation.approved" color="accent" matTooltip="Vaccination Validée">done</mat-icon>
           </td>
         </tr>
         </tbody>

@@ -4,6 +4,7 @@ import { UserAuthService } from './user-auth.service';
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {User} from "../User";
+import {Role} from "../role";
 
 @Injectable({
   providedIn: 'root',
@@ -29,15 +30,13 @@ export class UserService {
     });
   }
 
-  public getUsersForSup(centerId: number): Observable<User[]>{
+  public getUsers(centerId: number): Observable<User[]>{
     return this.httpclient.get<User[]>(this.Url+'/users?centerId='+centerId);
   }
 
 
-  public forAdmin() {
-    return this.httpclient.get(this.Url + '/forAdmin', {
-      responseType: 'text',
-    });
+  public getUsersForSup(): Observable<User[]> {
+    return this.httpclient.get<User[]>(this.Url + '/usersForSup');
   }
 
   public roleMatch(allowedRoles: Array<string>): boolean {
@@ -57,5 +56,21 @@ export class UserService {
       }
     }
     return isMatch;
+  }
+
+  public updateUser(user: User): Observable<User>{
+    return this.httpclient.put<User>(this.Url+"/updateUser", user);
+  }
+
+  public createUser(user : User): Observable<User>{
+    return this.httpclient.post<User>(this.Url+"/addNewUser", user);
+  }
+
+  public deactivateUser(user: User): Observable<User>{
+    return this.httpclient.put<User>(this.Url+"/deactivateUser", user);
+  }
+
+  public getRoles(): Observable<Role[]>{
+    return this.httpclient.get<Role[]>(this.Url+'/roles');
   }
 }

@@ -87,6 +87,7 @@ public class UserService {
         adminRoles.add(adminRole);
         adminUser.setRole(adminRoles);
         adminUser.setCenter(center1);
+        adminUser.setActivated(true);
         userDao.save(adminUser);
 
         User superUser = new User();
@@ -97,6 +98,7 @@ public class UserService {
         Set<Role> superRoles = new HashSet<>();
         superRoles.add(superRole);
         superUser.setRole(superRoles);
+        superUser.setActivated(true);
         userDao.save(superUser);
 
         User medUser = new User();
@@ -108,6 +110,7 @@ public class UserService {
         medRoles.add(medRole);
         medUser.setRole(medRoles);
         medUser.setCenter(center2);
+        medUser.setActivated(true);
         userDao.save(medUser);
 
         User medUser1 = new User();
@@ -119,6 +122,7 @@ public class UserService {
         medRoles1.add(medRole);
         medUser1.setRole(medRoles1);
         medUser1.setCenter(center1);
+        medUser1.setActivated(true);
         userDao.save(medUser1);
     }
 
@@ -128,6 +132,7 @@ public class UserService {
         userRoles.add(role);
         user.setRole(userRoles);
         user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+        user.setActivated(true);
         return userDao.save(user);
     }
 
@@ -135,7 +140,25 @@ public class UserService {
         return passwordEncoder.encode(password);
     }
 
-    public List<User> getUsers(long centerId){
+    public List<User> getUsers(final long centerId){
         return userDao.findByCenter_IdCenter(centerId);
+    }
+
+    public List<User> getUsersForSup(){
+        return userDao.findAll();
+    }
+
+    public User updateUser(final User user){
+        return userDao.save(user);
+    }
+
+    public User addUser(final User user){
+        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+        return userDao.save(user);
+    }
+
+    public User deactivateUser(final User user){
+        user.setActivated(false);
+        return userDao.save(user);
     }
 }
