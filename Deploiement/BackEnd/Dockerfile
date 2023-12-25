@@ -5,11 +5,11 @@ RUN gradle init
 RUN gradle build --no-daemon
 
 FROM openjdk:17
-ARG JAR_FILE=./covid-api/build/libs/*.jar
+RUN mkdir /api
+WORKDIR /api
+COPY ./gradle/wrapper/gradle-wrapper.jar .
 EXPOSE 8080
-COPY ${JAR_FILE} application.jar
-ENTRYPOINT ["java", "-jar", "application.jar"]
-
+ENTRYPOINT ["java","-jar","gradle-wrapper.jar"]
 
 #FROM eclipse-temurin:17-jre-alpine
 #RUN mkdir /api
