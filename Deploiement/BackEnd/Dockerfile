@@ -4,16 +4,15 @@ WORKDIR /covid-api
 RUN gradle init
 RUN gradle build --no-daemon
 
-FROM openjdk:17
+#FROM openjdk:17
+#ARG JAR_FILE=./covid-api/build/libs/*.jar
+#EXPOSE 8080
+#COPY ${JAR_FILE} application.jar
+#ENTRYPOINT ["java", "-jar", "application.jar"]
+
+FROM eclipse-temurin:17-jre-alpine
 RUN mkdir /api
 WORKDIR /api
-COPY ./gradle/wrapper/gradle-wrapper.jar .
+COPY ./build/libs/covid-api-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","gradle-wrapper.jar"]
-
-#FROM eclipse-temurin:17-jre-alpine
-#RUN mkdir /api
-#WORKDIR /api
-#COPY ./build/libs/covid-api-0.0.1-SNAPSHOT.jar .
-#EXPOSE 8080
-#CMD ["java", "-Dspring.profiles.active=docker", "-jar","covid-api-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-Dspring.profiles.active=docker", "-jar","covid-api-0.0.1-SNAPSHOT.jar"]
