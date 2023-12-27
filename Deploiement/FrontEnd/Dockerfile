@@ -11,4 +11,4 @@ RUN npm run build
 FROM nginx:alpine
 COPY /vaccination-app/nginx.conf /etc/nginx/nginx.conf
 COPY --from=node /vaccination-app/src /usr/share/nginx/html
-EXPOSE 4200
+EXPOSE 80
